@@ -1,0 +1,146 @@
+<div class="login container">
+        
+    	<div class="form">
+	    	<form class="loginForm form-horizontal">
+                    <h1 class="header">IFC Parser</h1>
+		    	<div class="sub-header">Login</div>
+
+				<div class="form-group">
+					<label class="col-lg-2 control-label" for="inputEmail">Username</label>
+					<div class="col-lg-4">
+						<div class="input-group">
+		  					<span class="input-group-addon">@</span>
+							<input type="text" class="form-control username" id="inputUserName" placeholder="Username">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label" for="inputPassword">Password</label>
+					<div class="col-lg-4">
+						<div class="input-group">
+			 				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+							<input type="password" class="form-control password" id="inputPassword" placeholder="Password">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-lg-offset-2 col-lg-10">
+						<label class="checkbox"> <input type="checkbox" class="rememberme" id="rememberMe"> Remember me
+						</label>
+						<button type="button" class="btn loginButton btn-primary">Sign in</button>
+						<button type="button" class="btn btn-default resetPasswordButton">Reset password</button>
+						<button type="button" class="btn btn-default registerButton initialhide">Register</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	
+</div>
+
+<script>
+function Login(main) {
+	var othis = this;
+	console.log("LOGIN");
+        
+        
+        $(".loginButton").click(function(){
+            console.log("clicked login button");
+            data = {"username": $("#inputUserName").val(), "password": $("#inputPassword").val()};
+            successCallback = function(data, status, jqxhr){
+                authenticated = JSON.parse(data);
+                if(authenticated){
+                    console.log("Authenticated!");
+                    $(".applicationContent").load("/NewIfcParser/jsp/projects.html", function(){
+                        main.current = new Projects(main);
+                    });
+                } else {
+                    console.error("Authentication Failed!");
+                }
+            };
+            errorCallback = function(jqxhr, status, error){
+                console.log(error);
+                console.log(jqxhr);
+                console.log("Failure");
+            };
+            main.apiCall("/NewIfcParser/login", "POST", data, successCallback, errorCallback);
+	});
+        /*
+	this.login = function(address) {
+		Global.bimServerApi.login($(".username").val(), $("#inputPassword").val(), $("#rememberMe").is(":checked"), function(data){
+			Global.bimServerApi.resolveUser(function(user){
+				$(".indexcontainer").load(Global.baseDir + "main.html", function(){
+					new Main(address, user).show(false);
+				});
+			});
+		});
+	}
+
+	if (address != null) {
+		$(".serverAddress").html(address);
+	}
+	
+	if (!Settings.allowBimServerAddress()) {
+		$(".serverDiv").hide();
+	}
+	
+	if (username != null) {
+		$("#inputEmail").val(username);
+	}
+
+	$(".header").load(Global.baseDir + "header.html");
+	
+	$(".loginButton").click(function(){
+		othis.login($("#inputServer").val());
+	});
+	
+	$(".login .username, .login .address, .login .password, .login .rememberme").enterpress(function(){
+		othis.login($("#inputServer").val());
+	});
+	
+	this.resetPassword = function(){
+		Global.bimServerApi.callWithFullIndication("AuthInterface", "requestPasswordChange", {username: $(".username").val(), resetUrl: Global.baseDir + "?page=ResetPassword"}, function(){
+			
+		});
+	};
+	
+	this.openIdClick = function(){
+		$(".openidDiv").show();
+		$(".loginForm").hide();
+	};
+	
+	this.registerClick = function(){
+		$(".indexcontainer").load(Global.baseDir + "register.html", function(){
+			new Register($(this));
+		});
+	};
+	
+	$(".registerButton").click(othis.registerClick);;
+	
+	$(".resetPasswordButton").click(function(){
+		othis.resetPassword();
+	});
+	
+	Global.bimServerApi.call("SettingsInterface", "isAllowSelfRegistration", {}, function(enabled){
+		if (enabled) {
+			$(".registerButton").show();
+		}
+	});
+	
+	if (username == null) {
+		$("#inputEmail").focus();
+	} else {
+		$("#inputPassword").focus();
+	}
+	
+	pushHistory({page: "Login"}, "Login");
+	
+	$(".otherServerLink").click(function(){
+		$(".indexcontainer").load(Global.baseDir + "selectserver.html", function(){
+			new SelectServer();
+		});
+	});
+        */
+}
+
+//login = new Login();
+</script>

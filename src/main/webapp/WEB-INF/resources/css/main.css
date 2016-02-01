@@ -1,0 +1,30 @@
+.applicationContent {
+    padding: 30px 30px;
+}
+
+.initialhide {
+    display: none;
+}
+
+.loginForm .header {
+    padding-top: 30px;
+}
+
+.loginForm .sub-header {
+    margin-bottom: 20px;
+    margin-top: 50px;
+    font-size: 21px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.checkbox {
+    padding-left: 20px;
+}
+
+.projectItem {
+    cursor: pointer;
+}
+
+.modal-dialog {
+    z-index: 1500;
+}

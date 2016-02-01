@@ -1,0 +1,46 @@
+<div class="project">
+	<div class="row">
+		<div class="col-md-4 navigatorWrapper">
+                    <h1 class="projectNameHeader"></h1>
+                    
+                    <button type="button" class="btn btn-primary checkinBtn">Checkin Model</button>
+                    
+		</div>
+		<div class="col-md-8 rightCol">
+			<div class="rightpanel ih">
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="checkinContainer"></div>
+
+
+<script>
+    function Project(main, pid){
+        var othis = this;
+        
+        console.log("Project");
+        
+        this.getProject = function(){
+            var url = "/NewIfcParser/getProjectByPid/" + pid;
+            data = null;
+            var successCallback = function(project, status, jqxhr){
+                $(".projectNameHeader").text(project.name);
+            };
+            var errorCallback = function(jqxhr, status, error){
+                console.log(error);
+                console.log(jqxhr);
+                console.log("Failure");
+            };
+            main.apiCall(url, "GET", data, successCallback, errorCallback); 
+        };
+        
+        $(".checkinBtn").click(function(){
+            $(".checkinContainer").load("/NewIfcParser/jsp/checkin.html", function(){
+                othis.checkin = new Checkin(main, othis, pid);
+            });
+        });
+	this.getProject();
+    }
+</script>

@@ -1,0 +1,7 @@
+com\aalto\controllers\MainController.class
+com\aalto\config\Config.class
+com\aalto\controllers\LoginController.class
+com\aalto\repo\ProjectRepoImpl.class
+com\aalto\config\WebInitializer.class
+com\aalto\model\Project.class
+com\aalto\controllers\ProjectController.class

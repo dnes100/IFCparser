@@ -1,0 +1,43 @@
+<div class="checkin modal-dialog" tabindex="-1">
+        <div class="modal-content">	
+            <div class="modal-header">
+                <a class="close" data-dismiss="modal">&times;</a>
+                <h3>Checkin</h3>
+            </div>
+            <div class="modal-body">
+                <div class="checkinWarning alert initialhide"></div>
+                <div class="uploadStatus"></div>
+                <div class="progressBarHolder"></div>
+                <div class="uploads">
+                    <div class="upload">
+                        <div class="form-group">
+                            <label for="file">File</label>
+                            <input class="fileupload" id="file" type="file" name="data"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="comment">Comment</label>
+                            <textarea id="comment" class="comment form-control" name="comment" rows="4"></textarea>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-default" data-dismiss="modal">Close</a>
+                <a class="btn uploadButton btn-primary">Checkin new revision</a>
+            </div>
+        </div>
+</div>
+
+<script>
+    function Checkin(main, project, pid) {
+        othis = this;
+        console.log("Checkin");
+        $(".modal-dialog").modal({keyboard: true});
+        
+       /* $(".fileupload").fileupload({
+           dataType: "json",
+           url: "/NewIfcParser/uploadIfc"
+        }); */
+    }
+</script>
